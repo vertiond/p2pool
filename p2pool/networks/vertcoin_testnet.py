@@ -18,3 +18,5 @@ ANNOUNCE_CHANNEL='#p2pool-vtc-testnet'
 VERSION_CHECK=lambda v: True
 SOFTFORKS_REQUIRED = set(['nversionbips', 'csv', 'segwit'])
 SEGWIT_ACTIVATION_VERSION = 16
+BLOCK_MAX_SIZE = 1000000
+BLOCK_MAX_WEIGHT = 4000000

@@ -405,7 +405,7 @@ def pubkey_hash_to_address(pubkey_hash, addr_ver, bech32_ver, net):
             if len(thash) % 2 == 1:
                 thash = '0%s' % thash
         data = [int(x) for x in bytearray.fromhex(thash)]
-        if net.SYMBOL.lower() in ['bch', 'tbch', 'bsv', 'tbsv']:
+        if net.SYMBOL.lower() in ['bch', 'tbch', 'bsv', 'tbsv', 'vtc', 'tvtc']:
             return cash_addr.encode(net.HUMAN_READABLE_PART, bech32_ver, data)
         else:
             return segwit_addr.encode(net.HUMAN_READABLE_PART, bech32_ver, data)
@@ -427,7 +427,7 @@ def address_to_pubkey_hash(address, net):
     except AddrError:
         pass
 
-    if net.SYMBOL.lower() not in ['bch', 'tbch', 'bsv', 'tbsv']:
+    if net.SYMBOL.lower() not in ['bch', 'tbch', 'bsv', 'tbsv', 'vtc', 'tvtc']:
         try:
             return get_bech32_pubkey_hash(address, net)
         except AddrError:
@@ -504,7 +504,7 @@ def pubkey_hash_to_script2(pubkey_hash, version, bech32_version, net):
         if len(size) % 2 == 1:
             size = '0%s' % size
         hsize = binascii.unhexlify(size)
-        if net.SYMBOL.lower() in ['bch', 'tbch', 'bsv', 'tbsv']:
+        if net.SYMBOL.lower() in ['bch', 'tbch', 'bsv', 'tbsv', 'vtc', 'tvtc']:
             # CashAddrs can be longer than 20 bytes
             # TODO: Check the version and restrict the bytes.
             if bech32_version == 0:
